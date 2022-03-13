@@ -3,7 +3,7 @@
     "displayName": "Air",
     "description": "Air language support for VSCode",
     "version": "0.0.1",
-    "icon": "assets/icon.png",
+    "icon": "assets/vscode_ext.png",
     "repository": {
         "type": "git",
         "url": "https://github.com/AirLanguage/VSCode-Plugin.git"
@@ -19,7 +19,11 @@
             "id": "air",
             "aliases": ["Air", "air"],
             "extensions": [".air"],
-            "configuration": "./language-configuration.json"
+            "configuration": "./language-configuration.json",
+            "icon": {
+                "light": "./assets/icon.png",
+                "dark": "./assets/icon.png"
+              }
         }],
         "grammars": [{
             "language": "air",
