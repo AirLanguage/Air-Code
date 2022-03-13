@@ -3,6 +3,11 @@
     "displayName": "Air",
     "description": "Air language support for VSCode",
     "version": "0.0.1",
+    "icon": "assets/icon.png",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/AirLanguage/VSCode-Plugin.git"
+      },
     "engines": {
         "vscode": "^1.65.0"
     },

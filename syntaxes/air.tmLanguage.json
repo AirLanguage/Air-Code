@@ -1,7 +1,17 @@
 {
-	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "Air",
+	"fileTypes": ["air"],
+	"scopeName": "source.air",
+
 	"patterns": [
+		{
+			"name": "meta.preprocessor.script.air",
+			"match": "^(#!.*)$"
+		},
+
+		{
+			"include": "#comments"
+		},
 		{
 			"include": "#keywords"
 		},
@@ -9,24 +19,96 @@
 			"include": "#strings"
 		}
 	],
+
 	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"begin": "//",
+					"beginCaptures": {
+						"0": {
+							"name": "comment.punctuation.definition.air"
+						}
+					},
+					"end": "$",
+					"name": "comment.line.air"
+				}
+			]
+		},
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.air",
-				"match": "\\b(if|while|for|return)\\b"
+				"match": "\\b(var|let|const|if|else|switch|case|while|for|loop|func|return)\\b"
 			}]
 		},
-		"strings": {
-			"name": "string.quoted.double.air",
-			"begin": "\"",
-			"end": "\"",
+
+"strings": {
 			"patterns": [
 				{
-					"name": "constant.character.escape.air",
-					"match": "\\\\."
+					"name": "string.interpolated.double.air",
+					"begin": "(?<!\\|r)\"",
+					"end": "\"",
+					"patterns": [
+						{
+							"name": "invalid.string.newline",
+							"match": "\\n"
+						},
+						{
+							"include": "#string-interp"
+						}
+					]
+				},
+				{
+					"name": "string.quoted.double.air",
+					"begin": "r\"",
+					"end": "\"",
+					"patterns": [
+						{
+							"name": "invalid.string.newline",
+							"match": "\\n"
+						}
+					]
+				},
+				{
+					"name": "string.interpolated.single.air",
+					"begin": "(?<!\\|r)'",
+					"end": "'",
+					"patterns": [
+						{
+							"name": "invalid.string.newline",
+							"match": "\\n"
+						},
+						{
+							"include": "#string-interp"
+						}
+					]
+				},
+				{
+					"name": "string.quoted.single.air",
+					"begin": "r'",
+					"end": "'",
+					"patterns": [
+						{
+							"name": "invalid.string.newline",
+							"match": "\\n"
+						}
+					]
+				}
+			]
+		},
+
+		"punctuation": {
+			"patterns": [
+				{
+					"name": "punctuation.comma.air",
+					"match": ","
+				},
+
+				{
+					"name": "punctuation.dot.air",
+					"match": "\\."
 				}
 			]
 		}
-	},
-	"scopeName": "source.air"
+	}
 }
